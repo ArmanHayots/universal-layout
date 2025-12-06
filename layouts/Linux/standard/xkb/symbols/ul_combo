@@ -1,12 +1,14 @@
 default partial alphanumeric_keys modifier_keys
-xkb_symbols "universal" {
+xkb_symbols "ul_combo" {
+    include "pc+us(basic)+ru(common)+inet(evdev)"
     // allows RALT to trigger AltGr (third and four) layer
     include "level3(ralt_switch)"
+
     modifier_map Mod5 { <LVL3> };
     modifier_map Mod5 { <RALT> };
 
-    name[Group1] = "English (US)";
-    name[Group2] = "Russian (RU)";
+    name[Group1]= "English (EN)";
+    name[Group2]= "Russian (RU)";
 
     // key to cycle between language groups
     key<CAPS>{[ISO_Next_Group]};
@@ -71,16 +73,6 @@ xkb_symbols "universal" {
 
     // Combo-keys, similar symbols in one key
 
-    key <AD11> {
-        type = "FOUR_LEVEL",
-        symbols[Group1] = [ comma, semicolon, comma, semicolon ],
-        symbols[Group2] = [ comma, semicolon, comma, semicolon ]
-    };
-    key <AD12> {
-        type = "FOUR_LEVEL",
-        symbols[Group1] = [ period, colon, period, colon ],
-        symbols[Group2] = [ period, colon, period, colon ]
-    };
     key <BKSL> {
         type = "FOUR_LEVEL",
         symbols[Group1] = [ slash, bar, backslash, U00A6 ],
@@ -131,7 +123,7 @@ xkb_symbols "universal" {
         symbols[Group2] = [ U0435, U0415, U0451, U0401 ]
     };
 
-    // Y U I O P
+    // Y U I O P [ ]
     key <AD06> {
         type = "FOUR_LEVEL_ALPHABETIC",
         symbols[Group1] = [ y,     Y,     U00A5, U00A5 ],
@@ -144,18 +136,28 @@ xkb_symbols "universal" {
     };
     key <AD08> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ i,     I,     U0449, U0429 ],
-        symbols[Group2] = [ U0448, U0428, U0449, U0429 ]
+        symbols[Group1] = [ i,     I     ],
+        symbols[Group2] = [ U0448, U0428 ]
     };
     key <AD09> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ o,     O,     less, U2264 ],
-        symbols[Group2] = [ U0437, U0417, less, U2264 ]
+        symbols[Group1] = [ o,     O     ],
+        symbols[Group2] = [ U0449, U0429 ]
     };
     key <AD10> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ p,     P,     greater, U2265 ],
-        symbols[Group2] = [ U0445, U0425, greater, U2265 ]
+        symbols[Group1] = [ p,     P,     U03C0, U03A0 ],
+        symbols[Group2] = [ U0437, U0417, U03C0, U03A0 ]
+    };
+    key <AD11> {
+        type = "FOUR_LEVEL_ALPHABETIC",
+        symbols[Group1] = [ bracketleft, braceleft, bracketleft, braceleft ],
+        symbols[Group2] = [ U0445,       U0425,     bracketleft, braceleft ]
+    };
+    key <AD12> {
+        type = "FOUR_LEVEL_ALPHABETIC",
+        symbols[Group1] = [ bracketright, braceright, bracketright, braceright ],
+        symbols[Group2] = [ U0431,        U0411,      bracketright, braceright ]
     };
 
     // A S D F G
@@ -185,7 +187,7 @@ xkb_symbols "universal" {
         symbols[Group2] = [ U043F, U041F, U03B3, U03B3 ]
     };
 
-    // H J K L ~
+    // H J K L ; '
     key <AC06> {
         type = "FOUR_LEVEL_ALPHABETIC",
         symbols[Group1] = [ h,     H,     U20BD, U20BD ],
@@ -210,8 +212,13 @@ xkb_symbols "universal" {
     };
     key <AC10> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ U007E, U2248, U00BB, U2192 ],
-        symbols[Group2] = [ U0436, U0416, U00BB, U2192 ]
+        symbols[Group1] = [ XF86Macro1, XF86Macro2, U00BB, U2192 ],
+        symbols[Group2] = [ U0436,      U0416,      U00BB, U2192 ]
+    };
+    key <AC11> {
+        type = "FOUR_LEVEL_ALPHABETIC",
+        symbols[Group1] = [ asciitilde, U2248, asciitilde, U2248 ],
+        symbols[Group2] = [ U044D,      U042D, asciitilde, U2248 ]
     };
 
     // Z X C V B
@@ -241,7 +248,7 @@ xkb_symbols "universal" {
         symbols[Group2] = [ U0438, U0418, U03B2, U0392 ]
     };
 
-    // N M & [ ]
+    // N M , . &
     key <AB06> {
         type = "FOUR_LEVEL_ALPHABETIC",
         symbols[Group1] = [ n,     N,     U03B7, U0397 ],
@@ -254,17 +261,17 @@ xkb_symbols "universal" {
     };
     key <AB08> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ ampersand, ampersand, ampersand, U2026 ],
-        symbols[Group2] = [ U0431,     U0411,     ampersand, U2026 ]
+        symbols[Group1] = [ comma, semicolon, less, U2264 ],
+        symbols[Group2] = [ comma, semicolon, less, U2264 ]
     };
     key <AB09> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ bracketleft, braceleft, bracketleft, braceleft ],
-        symbols[Group2] = [ U044E,       U042E,     bracketleft, braceleft ]
+        symbols[Group1] = [ period, colon, greater, U2265 ],
+        symbols[Group2] = [ period, colon, greater, U2265 ]
     };
     key <AB10> {
         type = "FOUR_LEVEL_ALPHABETIC",
-        symbols[Group1] = [ bracketright, braceright, bracketright, braceright ],
-        symbols[Group2] = [ U044D,        U042D,      bracketright, braceright ]
+        symbols[Group1] = [ ampersand, ampersand, ampersand, U2026 ],
+        symbols[Group2] = [ U044E,     U042E,     ampersand, U2026 ]
     };
 };
